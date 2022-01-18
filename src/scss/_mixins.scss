@@ -1,0 +1,18 @@
+@mixin flexCenter($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin displayFlex($direction: row, $justify, $align){
+  display: flex;
+  flex-direction: $direction;
+  @if $justify{
+  justify-content: $justify;
+  }
+ @if $align {
+  align-items: $align;
+ }
+  
+}

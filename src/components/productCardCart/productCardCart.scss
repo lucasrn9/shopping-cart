@@ -1,0 +1,38 @@
+@import '../../scss/config';
+@import '../../scss/mixins';
+
+.container-cart{
+  @include displayFlex(row,space-evenly,center);
+  margin: auto;
+  width: 50vw;
+  height: 250px;
+  border: 2px solid rgb(224, 224, 224);
+  margin-bottom: 12px;
+  font-family: font;
+
+ .wrapper-infos{
+   @include displayFlex(column,space-evenly,0);
+   height: 100%;
+
+  .product-info{
+    .product-name{
+      width: 30vw;
+      margin-bottom: 8px;
+    }
+  }
+
+  .amount-wrapper{
+   .unit-button{
+     margin: 0 6px;
+     width: 20px;
+   }
+  }
+ }
+
+  .product-image{
+    width: 210px;
+    height: 210px;
+  }
+
+
+}

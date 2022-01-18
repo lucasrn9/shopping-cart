@@ -1,0 +1,26 @@
+@import '../../scss/config';
+@import '../../scss/mixins';
+
+.product-list{
+  @include displayFlex(row,safe,0);
+  flex-wrap: wrap;
+  width: 60vw;
+  margin: 36px auto;
+}
+
+@media(max-width:1150px){
+  .product-list{
+    width: 80vw;
+    justify-content: center;
+  }
+}
+
+@media(max-width:575px){
+  .product-list{
+    width: 100vw;
+  }
+}
+
+body{
+  background-color: $primary-color;
+}

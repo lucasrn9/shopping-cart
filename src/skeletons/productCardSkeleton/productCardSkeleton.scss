@@ -1,0 +1,61 @@
+@import "../../scss/config";
+@import "../../scss/mixins";
+
+.container-skeleton {
+  width: 218px;
+  height: 400px;
+  @include displayFlex(column, 0, center);
+  margin-bottom: 14px;
+  margin-left: 12px;
+
+  .product-image-skeleton {
+    margin-top: 48px;
+    background-color: #ddd;
+    border-radius: 4px;
+    animation: skeleton-animation 1s linear infinite alternate;
+    width: 170px;
+    height: 152px;
+  }
+
+  .product-infos-skeleton {
+    margin-top: 8px;
+    padding: 0 16px;
+    @include displayFlex(column, 0, 0);
+    font-family: $secondary-font;
+  }
+
+  .product-name-skeleton {
+    width: 170px;
+    height: 24px;
+    background-color: #ddd;
+    border-radius: 4px;
+    animation: skeleton-animation 1s linear infinite alternate;
+  }
+
+  .product-price-skeleton {
+    margin-top: 8px;
+    width: 170px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #ddd;
+    border-radius: 4px;
+    animation: skeleton-animation 1s linear infinite alternate;
+  }
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-color: hsl(0, 0%, 70%);
+  }
+
+  100% {
+    background-color: hsl(0, 0%, 83%);
+  }
+}
+
+@media (max-width: 575px) {
+  .container-skeleton {
+    width: 250px;
+  }
+}

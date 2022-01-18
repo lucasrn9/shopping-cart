@@ -1,0 +1,46 @@
+@import '../../scss/config';
+@import '../../scss/mixins';
+
+.container {
+  @include displayFlex(column,0,center);
+  width: 218px;
+  height: 360px;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 5px 8px #88888804;
+  margin-bottom: 14px;
+  margin-left: 12px;
+  cursor: pointer;
+
+.product-image {
+  margin-top: 48px;
+  width: 170px;
+  height: 152px;
+}
+
+.product-infos {
+  @include displayFlex(column,0,0);
+  margin-top: 8px;
+  padding: 0 16px;
+  font-family: $secondary-font;
+}
+
+.product-name {
+height: 84px;
+font-size: .9rem;
+font-weight: 500;
+overflow: hidden;
+}
+
+.product-price {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+}
+
+@media(max-width:575px){
+ .container{
+   width: 250px;
+ }
+}
