@@ -32,7 +32,7 @@ const ProductDetails = ({
     <div className="product-info-wrapper">
       <h2 className="product-title">{title}</h2>
       <span className="product-description">{description}</span>
-      <span className="product-price">${price.toFixed(2)}</span>
+      <span className="product-price">${price?.toFixed(2)}</span>
       <AddToCartBtn
         title={title}
         price={price}

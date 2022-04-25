@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ProductCardCart } from "../../components";
+import { CartHandlers } from "../../components/productCardCart/ProductCardCart";
 import { RootState } from "../../redux/reducers";
 import "./Cart.scss";
 import {
@@ -8,14 +9,6 @@ import {
   removeUnit,
   addUnit,
 } from "../../redux/actions/cart.actions";
-
-export type CartHandlers = (
-  title: string,
-  price: number,
-  image: string,
-  id: number,
-  amount: number
-) => void;
 
 const Cart = () => {
   const cartProducts = useSelector((state: RootState) => state.cart);

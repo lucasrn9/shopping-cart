@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from "react";
 import "./productCardCart.scss";
-import { CartHandlers } from "../../pages/cart/Cart";
 
 interface Props {
   title: string;
@@ -13,6 +12,14 @@ interface Props {
   removeUnitHandler: CartHandlers;
   addUnitHandler: CartHandlers;
 }
+
+export type CartHandlers = (
+  title: string,
+  price: number,
+  image: string,
+  id: number,
+  amount: number
+) => void;
 
 const ProductCardCart = ({
   title,
