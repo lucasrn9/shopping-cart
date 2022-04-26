@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { BrowserRouter } from "react-router-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { QueryClientProvider, QueryClient } from "react-query";
 import rootReducer from "../../redux/reducers";
 import Details from "./Details";
 import Header from "../../components/header/Header";
@@ -26,13 +27,16 @@ describe("Details page", () => {
         },
       })
     );
+    const queryClient = new QueryClient();
     render(
-      <Provider store={createStore(rootReducer)}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-        <Details />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={createStore(rootReducer)}>
+          <BrowserRouter>
+            <Header />
+          </BrowserRouter>
+          <Details />
+        </Provider>
+      </QueryClientProvider>
     );
     const amountCounter = await screen.findByTestId("amount-counter");
     const AddToCartButton = await screen.findByText("Add to cart");

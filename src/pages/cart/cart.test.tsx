@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { QueryClientProvider, QueryClient } from "react-query";
 import Details from "../details/Details";
 import Cart from "./Cart";
 import store from "../../redux/store/store";
@@ -25,10 +26,14 @@ describe("cart page", () => {
       })
     );
 
+    const queryClient = new QueryClient();
+
     render(
-      <Provider store={store}>
-        <Details />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Details />
+        </Provider>
+      </QueryClientProvider>
     );
 
     const addToCartBtn = await screen.findByText("Add to cart");

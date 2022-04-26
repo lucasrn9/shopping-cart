@@ -4,41 +4,34 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import * as redux from "react-redux";
+import { QueryClientProvider, QueryClient } from "react-query";
+import axios from "axios";
 import rootReducer from "../../redux/reducers";
 import Home from "./Home";
+import products from "../../mocks/products";
 
 describe("Home page", () => {
-  test("Check if Home page renders a ProductCard component with the correct informations, for each product in redux products store", () => {
-    const productsMock = jest.spyOn(redux, "useSelector");
-    productsMock.mockReturnValue([
-      {
-        id: 1,
-        title: "Product title test 1",
-        price: 10,
-        description: "product description test 1",
-        category: "test",
-        image: "#",
-        rating: { rate: 0, count: 0 },
-      },
-      {
-        id: 2,
-        title: "Product title test 2",
-        price: 20,
-        description: "product description test 2",
-        category: "test",
-        image: "#",
-        rating: { rate: 0, count: 0 },
-      },
-    ]);
-    render(
-      <BrowserRouter>
-        <Provider store={createStore(rootReducer)}>
-          <Home />
-        </Provider>
-      </BrowserRouter>
-    );
-    expect(screen.getAllByRole("presentation")).toHaveLength(2);
+  test("Check if Home page renders a ProductCard component with the correct informations, for each product in redux products store", async () => {
+    jest.spyOn(redux, "useSelector").mockReturnValue(products);
 
+    jest.spyOn(axios, "get").mockReturnValueOnce(
+      Promise.resolve({
+        data: products,
+      })
+    );
+
+    const queryClient = new QueryClient();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Provider store={createStore(rootReducer)}>
+          <BrowserRouter>
+            <Home />
+          </BrowserRouter>
+        </Provider>
+      </QueryClientProvider>
+    );
+    const productCards = await screen.findAllByRole("presentation");
+    expect(productCards).toHaveLength(2);
     expect(screen.getByText("Product title test 1")).toBeInTheDocument();
     expect(screen.getAllByTestId("product-price")[0].textContent).toBe(
       "$ 10.00"
